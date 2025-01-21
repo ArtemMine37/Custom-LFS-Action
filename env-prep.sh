@@ -1,13 +1,42 @@
-# Remove unnecessary software
-echo "=> Cleaning up..."
-bash -c "sudo apt-get autopurge docker-{buildx-plugin,ce{,-cli}} containerd.io podman buildah skopeo containers-common kubectl \
-adoptium-ca-certificates {openjdk,adoptopenjdk,temurin,nginx,apache2,php,vim,{,lib}mono,gfortran,postgresql,libgtk-3,ant{,-optional}} \
-libpq-dev libmysqlclient* msodbcsql* mssql-tools unixodbc-dev mysql-client* mysql-common mysql-server* php*-*sql sphinxsearch mongodb* \
-firefox {google-chrome,microsoft-edge}-stable xvfb apache2 nginx php{7,8}* session-manager-plugin {azure,google-cloud}-cli heroku subversion \
-mercurial vim dotnet* aspnetcore* mono{doc}* libmono* msbuild nuget ruby* rake ri powershell r-{base,cran,doc}* r-recommended snapd man{-db,pages} \
-ubuntu-mono *-icon-theme esl-erlang imagemagick{,-6-common} libgl1-mesa-dri firebird* hhvm"
+export LFSDISK="${pwd}/rootfs-lfs"
+export LFS=${pwd}/lfs
+export helloworld=${pwd}
+
+# the env preparation script - pre compile
+
+# Software preparations
 echo "=> Preparing software..."
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install build-essential bison m4 perl gawk
-echo "=> The good ending (should be)"
+# Partitions (won't use real block anyway)
+echo "> Partitions"
+echo "=> Make system partition first"
+fallocate -l 12G $LFSDISK
+mkfs.ext4 $LFSDISK
+echo "=> Mounting..."
+mount -v $LFSDISK $LFS
+# Recreate directory structure - FROM LFS GUIDE
+echo "> System"
+echo "=> Directory structure creation"
+mkdir -pv $LFS/{etc,var} $LFS/usr/{bin,lib,sbin}
+
+for i in bin lib sbin; do
+  ln -sv usr/$i $LFS/$i
+done
+
+case $(uname -m) in
+  x86_64) mkdir -pv $LFS/lib64 ;;
+esac
+
+mkdir -pv $LFS/tools
+echo "=> Creating lfs user..."
+groupadd lfs
+# Create a user with a "user" password
+useradd -s /bin/bash -g lfs -m -p user -k /dev/null lfs
+# Grant permissions to change LFS directory
+chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools}
+case $(uname -m) in
+  x86_64) chown -v lfs $LFS/lib64 ;;
+esac
+# to be continued ig

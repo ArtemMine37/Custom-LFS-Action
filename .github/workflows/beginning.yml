@@ -23,11 +23,12 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # bash -c ~/work/Custom-LFS-Action/Custom-LFS-Action/env-prep.sh
       - uses: actions/checkout@v4
 
       - name: Clean up the environment
         run: |
-          bash -c ~/work/Custom-LFS-Action/Custom-LFS-Action/env-prep.sh
+          echo Placeholder(tm)
           echo Current location: ${pwd}
           echo Home directory: ${ls ~}
 # Attempts to work around the "not found" until i figure it out

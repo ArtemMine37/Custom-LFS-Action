@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Prepare the environment
-        run: env-prep.sh
+        run: ./env-prep.sh
 # Attempts to work around the "not found" until i figure it out
       # Runs a single command using the runners shell
       - name: Download the source code

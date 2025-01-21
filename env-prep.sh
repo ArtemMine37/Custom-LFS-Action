@@ -1,7 +1,7 @@
 # Remove unnecessary software
 echo "=> Cleaning up..."
 bash -c "sudo apt-get autopurge docker-{buildx-plugin,ce{,-cli}} containerd.io podman buildah skopeo containers-common kubectl \
-adoptium-ca-certificates {openjdk,adoptopenjdk,temurin,nginx,apache2,php,vim,{,lib}mono,gfortran,postgresql,libgtk-3,ant{,-optional} \
+adoptium-ca-certificates {openjdk,adoptopenjdk,temurin,nginx,apache2,php,vim,{,lib}mono,gfortran,postgresql,libgtk-3,ant{,-optional}} \
 libpq-dev libmysqlclient* msodbcsql* mssql-tools unixodbc-dev mysql-client* mysql-common mysql-server* php*-*sql sphinxsearch mongodb* \
 firefox {google-chrome,microsoft-edge}-stable xvfb apache2 nginx php{7,8}* session-manager-plugin {azure,google-cloud}-cli heroku subversion \
 mercurial vim dotnet* aspnetcore* mono{doc}* libmono* msbuild nuget ruby* rake ri powershell r-{base,cran,doc}* r-recommended snapd man{-db,pages} \

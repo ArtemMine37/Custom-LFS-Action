@@ -42,9 +42,9 @@ jobs:
 
       - name: First building attempts
         run: |
-          cp chroot-prep.sh /home/lfs/
-          chown +x /home/lfs/chroot-prep.sh
-          chown lfs /home/lfs/chroot-prep.sh
+          cp chroot-prep.sh /root/
+          chown lfs /root/chroot-prep.sh
+          chmod +x /root/chroot-prep.sh
           su -c ~/chroot-prep.sh - lfs
 
       # Runs a set of commands using the runners shell

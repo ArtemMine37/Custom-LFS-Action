@@ -40,6 +40,13 @@ jobs:
           chmod +x prep-sources.sh
           sudo bash ./prep-sources.sh
 
+      - name: First building attempts
+        run: |
+          cp chroot-prep.sh /home/lfs/
+          chown +x /home/lfs/chroot-prep.sh
+          chown lfs /home/lfs/chroot-prep.sh
+          su -c ~/chroot-prep.sh - lfs
+
       # Runs a set of commands using the runners shell
       - name: Make the base structure
         run: |

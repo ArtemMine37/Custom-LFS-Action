@@ -12,7 +12,7 @@ sudo apt-get install build-essential bison m4 perl gawk
 # Partitions (won't use real block anyway)
 echo "> Partitions"
 echo "=> Make system partition first"
-fallocate -l 12G $LFSDISK
+fallocate -l 20G $LFSDISK
 mkfs.ext4 $LFSDISK
 echo "=> Mounting..."
 mount -v $LFSDISK $LFS
@@ -39,4 +39,9 @@ chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools}
 case $(uname -m) in
   x86_64) chown -v lfs $LFS/lib64 ;;
 esac
+# Start the first script (to configure shell stuff)
+chown lfs-configure-1.sh
+su -c ./lfs-configure-1.sh - lfs
+# The end.
+echo "    [OK]"
 # to be continued ig

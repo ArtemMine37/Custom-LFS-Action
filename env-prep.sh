@@ -40,10 +40,9 @@ case $(uname -m) in
   x86_64) chown -v lfs $LFS/lib64 ;;
 esac
 # Scripts.
-cp lfs-configure-1.sh /home/lfs/
-chown lfs /home/lfs/lfs-configure-1.sh
-chmod +x /home/lfs/lfs-configure-1.sh
-su -c ~/lfs-configure-1.sh - lfs
+chown lfs lfs-configure-1.sh
+chmod +x lfs-configure-1.sh
+sudo -l lfs ./lfs-configure-1.sh
 # The end.
 echo "    [OK]"
 # to be continued ig

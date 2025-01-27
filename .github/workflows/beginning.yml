@@ -45,7 +45,7 @@ jobs:
           cp chroot-prep.sh /root/
           chown lfs /root/chroot-prep.sh
           chmod +x /root/chroot-prep.sh
-          su -c ~/chroot-prep.sh - lfs
+          sudo -l lfs ./chroot-prep.sh
 
       # Runs a set of commands using the runners shell
       - name: Make the base structure

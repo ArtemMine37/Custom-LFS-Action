@@ -32,11 +32,13 @@ jobs:
       - name: Prepare the environment
         run: |
           chmod +x env-prep.sh
-          sudo ./env-prep.sh
+          sudo bash ./env-prep.sh
 # Attempts to work around the "not found" until i figure it out
       # Runs a single command using the runners shell
       - name: Download the source code
-        run: prep-sources.sh
+        run: |
+          chmod +x prep-sources.sh
+          sudo bash ./prep-sources.sh
 
       # Runs a set of commands using the runners shell
       - name: Make the base structure

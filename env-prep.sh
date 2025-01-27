@@ -39,9 +39,10 @@ chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools}
 case $(uname -m) in
   x86_64) chown -v lfs $LFS/lib64 ;;
 esac
-# Start the first script (to configure shell stuff)
-chown lfs-configure-1.sh
-su -c ./lfs-configure-1.sh - lfs
+# Scripts.
+cp lfs-configure-1.sh /home/lfs/
+chown +x /home/lfs/lfs-configure-1.sh
+su -c ~/lfs-configure-1.sh - lfs
 # The end.
 echo "    [OK]"
 # to be continued ig

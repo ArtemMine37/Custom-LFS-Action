@@ -1,5 +1,5 @@
-export LFSDISK="${pwd}/rootfs-lfs"
-export LFS=${pwd}/lfs
+export LFSDISK=/mnt/rootfs-lfs
+export LFS=/mnt/lfs
 export helloworld=${pwd}
 
 # the env preparation script - pre compile

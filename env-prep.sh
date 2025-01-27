@@ -41,7 +41,8 @@ case $(uname -m) in
 esac
 # Scripts.
 cp lfs-configure-1.sh /home/lfs/
-chown +x /home/lfs/lfs-configure-1.sh
+chown lfs /home/lfs/lfs-configure-1.sh
+chmod +x /home/lfs/lfs-configure-1.sh
 su -c ~/lfs-configure-1.sh - lfs
 # The end.
 echo "    [OK]"
